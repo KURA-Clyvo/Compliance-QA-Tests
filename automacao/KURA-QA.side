@@ -1,0 +1,811 @@
+{
+  "id": "61334c28-a36b-4290-add1-d4d8a9332ec1",
+  "version": "2.0",
+  "name": "KURA-QA",
+  "url": "http://localhost:19006",
+  "urls": [
+    "http://localhost:19006",
+    "http://localhost:8082"
+  ],
+  "plugins": [],
+  "tests": [
+    {
+      "id": "4677e72e-7b11-4332-9419-83fe26921b13",
+      "name": "CT-01 - Login gestor",
+      "commands": [
+        {
+          "id": "9d31c3e3-87c5-4695-a118-ab0c4cf3c9f5",
+          "comment": "Troque DEFINA_NO_IDE pela senha real SO NA SUA COPIA LOCAL (nunca commitar). Variaveis nao persistem entre testes no runner, por isso o store esta em cada teste.",
+          "command": "store",
+          "target": "DEFINA_NO_IDE",
+          "targets": [],
+          "value": "senhaGestor"
+        },
+        {
+          "id": "c659692f-cd62-4e8e-afc4-59e49a5ac91f",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "e470e02d-bedd-4d08-839d-5f919e64bdd1",
+          "comment": "Limpa a sessao anterior (token fica em localStorage)",
+          "command": "executeScript",
+          "target": "try{localStorage.clear();sessionStorage.clear();}catch(e){}",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "d3006b87-8831-4396-958e-2ea3534701f0",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "09d32de8-7daf-4b86-aca8-89e72fda5ce5",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "a30087ca-68d1-4479-a0f9-ea2ba3f52405",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "demo@kura.local"
+        },
+        {
+          "id": "6f5ff9e6-240f-4e7d-b294-80bb487d4d4c",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"Senha\"]",
+          "targets": [],
+          "value": "${senhaGestor}"
+        },
+        {
+          "id": "dc8ceaf7-5d39-4556-8ec9-8a44e0d6a3f2",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//*[@role='button'][normalize-space(.)='Entrar']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "7503d325-85a0-48c3-b975-fc55508f587c",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"greeting-block\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "7bf03841-10e7-4017-b4f6-e7d12b461bd3",
+          "comment": "",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"greeting-block\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "66a47d36-3455-40cd-94c7-d86760af0983",
+          "comment": "",
+          "command": "executeScript",
+          "target": "return window.location.pathname",
+          "targets": [],
+          "value": "caminho"
+        },
+        {
+          "id": "fdfbf195-ba04-42da-b00f-83b23985310d",
+          "comment": "URL termina em /dashboard",
+          "command": "assert",
+          "target": "caminho",
+          "targets": [],
+          "value": "/dashboard"
+        }
+      ]
+    },
+    {
+      "id": "1d939ab6-72d7-4dee-b82a-90582dc190a9",
+      "name": "CT-02 - Login senha errada",
+      "commands": [
+        {
+          "id": "275a26bc-f2ed-426d-a4cf-0563f692285c",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "3040fd2b-af25-4f33-9a5c-da0f2b0c669c",
+          "comment": "",
+          "command": "executeScript",
+          "target": "try{localStorage.clear();sessionStorage.clear();}catch(e){}",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "fa282aaf-5921-4e54-bfa2-17a7ae087b44",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8c32fb46-f8c0-4670-aded-3d3b874b020d",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "54d3b247-4d30-4d93-b0f3-2ca01ee80bd7",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "demo@kura.local"
+        },
+        {
+          "id": "62f16247-22f8-459d-8ee4-5e54296dd88e",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"Senha\"]",
+          "targets": [],
+          "value": "SenhaErrada123"
+        },
+        {
+          "id": "794e279b-10a1-4e2d-82f9-dda915ae33c0",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//*[@role='button'][normalize-space(.)='Entrar']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "4f7a1b6e-1dbd-476b-8863-4603d99a14c5",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "xpath=//*[contains(normalize-space(.),'E-mail ou senha incorretos') or contains(normalize-space(.),'Sem conex')]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "217c0bbb-e510-4efc-bb3f-453565da5995",
+          "comment": "Mensagem correta (E66 corrigido)",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(normalize-space(text()),'E-mail ou senha incorretos')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "50a211ea-d42d-4111-8f7f-ff6153bf47ad",
+          "comment": "Nao pode aparecer a mensagem de rede",
+          "command": "assertElementNotPresent",
+          "target": "xpath=//*[contains(normalize-space(text()),'Sem conex')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "a4492908-63cb-479e-8bcc-68ed06af1b49",
+          "comment": "",
+          "command": "assertElementNotPresent",
+          "target": "css=[data-testid=\"nav-drawer\"]",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "3eb6f8e6-a4c5-40df-a096-7fb058f51fb4",
+      "name": "CT-08 - Fila da Luna",
+      "commands": [
+        {
+          "id": "edfc7e14-1532-4c33-8094-00fe7a85364c",
+          "comment": "Troque DEFINA_NO_IDE pela senha real SO NA SUA COPIA LOCAL (nunca commitar). Variaveis nao persistem entre testes no runner, por isso o store esta em cada teste.",
+          "command": "store",
+          "target": "DEFINA_NO_IDE",
+          "targets": [],
+          "value": "senhaGestor"
+        },
+        {
+          "id": "41eb45fc-d32a-47c6-8709-20e8a3bc0be6",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1da27019-3d1b-4ad9-a772-3a2977198441",
+          "comment": "Limpa a sessao anterior (token fica em localStorage)",
+          "command": "executeScript",
+          "target": "try{localStorage.clear();sessionStorage.clear();}catch(e){}",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "74de13a8-2dc8-4e36-bf02-c5c6981bbf15",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "6acb66ee-7bf3-4f21-baa9-1b04bc3681ba",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "95df10e3-11d6-4c81-8e47-b97a20a193d7",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "demo@kura.local"
+        },
+        {
+          "id": "1d27d61f-2d0d-4e97-9df6-51211ee3e8ca",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"Senha\"]",
+          "targets": [],
+          "value": "${senhaGestor}"
+        },
+        {
+          "id": "6181a959-e1e7-43dd-971a-757cc56b81eb",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//*[@role='button'][normalize-space(.)='Entrar']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "52009641-5a0b-439d-8ef2-c603a13c8f31",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"nav-item-luna\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "6b1fd895-48cd-478b-bbab-849ca86e757e",
+          "comment": "Clique via DOM: o item existe mas o Selenium o considera nao visivel/coberto (mesmo fallback do script Python)",
+          "command": "executeScript",
+          "target": "document.querySelector('[data-testid=\"nav-item-luna\"]').click()",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "48a7c037-1ae3-47e2-a04a-436cec172bed",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"fila-luna-lista\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "ac85e468-3011-4fb0-8631-52024636b469",
+          "comment": "",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"fila-luna-lista\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8789e026-e8bf-487e-b00c-4fde2a7e3ee7",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"total-triagens\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "dc993ca9-6aab-4bd7-b210-f624fa79e44f",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"total-triagens\"]",
+          "targets": [],
+          "value": "Total de triagens: 4"
+        }
+      ]
+    },
+    {
+      "id": "703270e9-662c-4fd0-b4b9-cc93bd6a85b9",
+      "name": "CT-11 - Loja do tutor",
+      "commands": [
+        {
+          "id": "f1ea00b8-1e5a-401e-885c-374673b9f334",
+          "comment": "Troque DEFINA_NO_IDE pela senha real SO NA SUA COPIA LOCAL (nunca commitar). Variaveis nao persistem entre testes no runner, por isso o store esta em cada teste.",
+          "command": "store",
+          "target": "DEFINA_NO_IDE",
+          "targets": [],
+          "value": "senhaTutor"
+        },
+        {
+          "id": "00d20b61-02d8-49f3-af1d-d04fb3e20c8f",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:8082/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "d18e76c7-cf37-4417-bb2b-538a3b86f87a",
+          "comment": "Limpa a sessao anterior (token fica em localStorage)",
+          "command": "executeScript",
+          "target": "try{localStorage.clear();sessionStorage.clear();}catch(e){}",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "2c0d10a8-403d-4689-b4bc-3bca675b6231",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:8082/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "6aff33f0-2cac-4422-8587-3604fa131241",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "7f167072-a08f-46d6-91a5-bdaa99d90f18",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "tutor1-demo@kura.local"
+        },
+        {
+          "id": "f03e4b4d-4d85-4d46-bf75-e33a81f3e2de",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"Senha\"]",
+          "targets": [],
+          "value": "${senhaTutor}"
+        },
+        {
+          "id": "8e0d5be0-4e91-4fb4-820f-8729decd4a39",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//*[@role='button'][normalize-space(.)='Entrar']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "d8cfdc04-49c1-49fb-96c0-5e966030cdcb",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "xpath=//*[@role='tab'][@aria-label='Loja']",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "76792322-a0b7-4819-946e-35463a63e148",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//*[@role='tab'][@aria-label='Loja']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "30031c3f-c2d6-4536-9cd9-83831b555131",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"loja-aviso\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "0aec3bf4-8913-4c44-9705-002df58f92a9",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"loja-aviso\"]",
+          "targets": [],
+          "value": "Pré-lançamento: pagamento e entrega serão ativados quando os parceiros logísticos concluírem a integração. Nenhuma cobrança é feita."
+        },
+        {
+          "id": "ba0c42ae-c6e9-44cf-aaca-823646b1e7ae",
+          "comment": "",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"loja-grade\"]",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "3458c79e-6c1b-4fb6-bafa-454f1c05d1d1",
+      "name": "CT-07 - Veterinario sem financeiro",
+      "commands": [
+        {
+          "id": "b79c09e6-17ed-49e6-9f52-4a9ea2095544",
+          "comment": "Troque DEFINA_NO_IDE pela senha real SO NA SUA COPIA LOCAL (nunca commitar). Variaveis nao persistem entre testes no runner, por isso o store esta em cada teste.",
+          "command": "store",
+          "target": "DEFINA_NO_IDE",
+          "targets": [],
+          "value": "senhaGestor"
+        },
+        {
+          "id": "6fb993a0-033b-4879-baa6-b933870c7ea7",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "7136f501-7b5d-41ee-a7b8-41d8fd898e12",
+          "comment": "Limpa a sessao anterior (token fica em localStorage)",
+          "command": "executeScript",
+          "target": "try{localStorage.clear();sessionStorage.clear();}catch(e){}",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "80eebbfe-db84-4577-8d34-36b23d67caa5",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "f7a06754-d0bc-47b9-bb3f-34f922b4684c",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "7fb30023-bd9c-4701-941b-ac1d232e9481",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "demo@kura.local"
+        },
+        {
+          "id": "6a9a74dc-e490-45bf-8740-95cb6b817e8f",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"Senha\"]",
+          "targets": [],
+          "value": "${senhaGestor}"
+        },
+        {
+          "id": "3feb87c3-bf13-438c-98e0-c698598ddfb0",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//*[@role='button'][normalize-space(.)='Entrar']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "55f406df-ca90-4a42-85c3-9d46623b363b",
+          "comment": "",
+          "command": "executeScript",
+          "target": "return 'vet.ide+' + Date.now() + '@kura.local'",
+          "targets": [],
+          "value": "emailVet"
+        },
+        {
+          "id": "6adcf48c-caff-4881-b7fc-46675f584eb6",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"nav-item-settings\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "8e29824f-3c15-4eba-a303-849045dd3e86",
+          "comment": "Clique via DOM: o item existe mas o Selenium o considera nao visivel/coberto (mesmo fallback do script Python)",
+          "command": "executeScript",
+          "target": "document.querySelector('[data-testid=\"nav-item-settings\"]').click()",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "95bf2107-0ad6-4623-b0dc-ede8a6aa7e5d",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"btn-convidar\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "5cb1bef6-c250-4e1c-b5cc-b03bd7f9a7bd",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"btn-convidar\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "9b3a269f-ea0a-40f0-884f-962caac8dc5d",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"btn-novo-usuario\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "dee5a0da-3846-4f66-981e-e04a05f17443",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"btn-novo-usuario\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1477fe7f-a793-4a5d-b870-e7101e32991f",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"input-email-usuario\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "45dc6251-30b8-49be-8391-1941e932052c",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"input-email-usuario\"]",
+          "targets": [],
+          "value": "${emailVet}"
+        },
+        {
+          "id": "9f8e6d6e-f060-4bf0-b1d2-2e176bad3588",
+          "comment": "Senha ficticia de teste local, pode ficar no arquivo",
+          "command": "type",
+          "target": "css=[data-testid=\"input-senha-usuario\"]",
+          "targets": [],
+          "value": "VetIde12345"
+        },
+        {
+          "id": "d15abe56-6e71-44d8-af1e-a2b9f89dea62",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"chip-papel-veterinario\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "ea7f945c-6324-460c-aad8-f77150c0b1c9",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"btn-salvar-usuario\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "b2b2d222-ecf9-483d-ab46-f3c3db69a092",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "xpath=//*[contains(normalize-space(text()),'${emailVet}')]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "06c0f63e-a2cb-4349-a5ef-0da86744489d",
+          "comment": "Clique via DOM: o item existe mas o Selenium o considera nao visivel/coberto (mesmo fallback do script Python)",
+          "command": "executeScript",
+          "target": "document.querySelector('[data-testid=\"nav-item-settings\"]').click()",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8cd60df4-148f-4b01-bfd3-7c489abcb7c2",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"btn-sair\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "6ac9a8f1-2899-4d6c-9257-b822ee3abb9b",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"btn-sair\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "7b52d2fb-e241-4cb4-ab13-ada699a846ab",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"confirm-ok\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "235d387e-516d-433b-9476-b62d9eeea6b0",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"confirm-ok\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "9a231c38-8799-4dc2-ac7d-f6263a68622d",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "77ad8f38-d21b-41bb-ad07-27ce13dedf17",
+          "comment": "",
+          "command": "executeScript",
+          "target": "try{localStorage.clear();sessionStorage.clear();}catch(e){}",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "0ec84564-acd5-46e3-81cc-5935816161cf",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "fd50cbed-f953-461b-a542-3a9825116a4d",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "e9fb44ce-3141-4a3d-b275-12ea9b4bea40",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"E-mail\"]",
+          "targets": [],
+          "value": "${emailVet}"
+        },
+        {
+          "id": "874e208f-6f0c-4b3e-b3f6-fe7cb0d4caee",
+          "comment": "",
+          "command": "type",
+          "target": "css=[aria-label=\"Senha\"]",
+          "targets": [],
+          "value": "VetIde12345"
+        },
+        {
+          "id": "c5bf9365-79f6-4a9d-8f66-94058bc5a0eb",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//*[@role='button'][normalize-space(.)='Entrar']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8504ffca-2cad-404c-b74c-a7f7a0ed40fb",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"greeting-block\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "5f0d2a41-3b7e-4c19-9a6d-1c2e8b7f4a10",
+          "comment": "Espera o painel carregar de verdade (grade de metricas) antes de afirmar a AUSENCIA do botao financeiro, para a ausencia nao ser vacua",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"metrics-grid\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "28e58df1-049f-47d4-869e-4a9e3ece26fc",
+          "comment": "",
+          "command": "assertElementNotPresent",
+          "target": "css=[data-testid=\"btn-ver-painel-financeiro\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "448310af-d5bb-423e-8fb4-752dc37ebcd8",
+          "comment": "Clique via DOM: o item existe mas o Selenium o considera nao visivel/coberto (mesmo fallback do script Python)",
+          "command": "executeScript",
+          "target": "document.querySelector('[data-testid=\"nav-item-settings\"]').click()",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "7e9a99ff-d7c4-4c77-9428-248fb820176d",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"vet-perfil\"]",
+          "targets": [],
+          "value": "20000"
+        },
+        {
+          "id": "c3806f88-c04a-4560-a9bf-0bc404aedc2c",
+          "comment": "",
+          "command": "assertElementNotPresent",
+          "target": "css=[data-testid=\"btn-painel-financeiro\"]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "f64abafc-80ca-4a45-a7d6-5b442fb92c07",
+          "comment": "",
+          "command": "open",
+          "target": "http://localhost:19006/financeiro",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "c177ce17-df6d-4ed2-8e14-c65ebdc49951",
+          "comment": "Deixa o redirecionamento (useRequireGestor) acontecer",
+          "command": "pause",
+          "target": "",
+          "targets": [],
+          "value": "3000"
+        },
+        {
+          "id": "868d646c-ea9c-46c8-8b51-2bd2fb11b83a",
+          "comment": "",
+          "command": "executeScript",
+          "target": "return window.location.pathname",
+          "targets": [],
+          "value": "caminho"
+        },
+        {
+          "id": "86152280-0b9b-4942-b428-411ccc64e76f",
+          "comment": "",
+          "command": "assert",
+          "target": "caminho",
+          "targets": [],
+          "value": "/dashboard"
+        },
+        {
+          "id": "ad5e00cd-653a-442f-8a9d-85add2abe813",
+          "comment": "",
+          "command": "assertElementNotPresent",
+          "target": "xpath=//*[contains(normalize-space(text()),'Painel de gestão')]",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "d2b07435-caf2-4c71-85cd-bc6c5a9ff5da",
+      "name": "KURA - Regressao QA Sprint 4",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 60,
+      "tests": [
+        "4677e72e-7b11-4332-9419-83fe26921b13",
+        "1d939ab6-72d7-4dee-b82a-90582dc190a9",
+        "3eb6f8e6-a4c5-40df-a096-7fb058f51fb4",
+        "703270e9-662c-4fd0-b4b9-cc93bd6a85b9",
+        "3458c79e-6c1b-4fb6-bafa-454f1c05d1d1"
+      ]
+    }
+  ]
+}
