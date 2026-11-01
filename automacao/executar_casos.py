@@ -416,7 +416,13 @@ def ct07():
     perfil = tid("vet-perfil").text.strip()
     sem_btn_cfg = len(d().find_elements(By.CSS_SELECTOR, '[data-testid="btn-painel-financeiro"]')) == 0
     d().get(CLINICA + "/financeiro")
-    time.sleep(3)  # deixa o redirecionamento (useRequireGestor) acontecer
+    # Espera o redirecionamento (useRequireGestor) em vez de uma pausa fixa: em servidor de dev a
+    # recarga pode passar de 3 s. Se o vet tivesse acesso, a URL nunca chegaria a /dashboard e a
+    # asserção abaixo falharia com a URL real no relatório.
+    try:
+        w().until(EC.url_contains("/dashboard"))
+    except TimeoutException:
+        pass
     url = d().current_url
     sem_painel = "Painel de gestão" not in corpo()
     ok = sem_btn_dash and sem_btn_cfg and "Veterin" in perfil and "/dashboard" in url and sem_painel

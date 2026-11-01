@@ -759,11 +759,11 @@
         },
         {
           "id": "c177ce17-df6d-4ed2-8e14-c65ebdc49951",
-          "comment": "Deixa o redirecionamento (useRequireGestor) acontecer",
-          "command": "pause",
-          "target": "",
+          "comment": "Espera o redirecionamento (useRequireGestor) chegar ao dashboard; greeting-block so existe no dashboard. Se o vet tivesse acesso, o elemento nunca apareceria e o caso falharia.",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"greeting-block\"]",
           "targets": [],
-          "value": "3000"
+          "value": "30000"
         },
         {
           "id": "868d646c-ea9c-46c8-8b51-2bd2fb11b83a",
