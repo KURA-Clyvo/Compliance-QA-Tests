@@ -271,11 +271,14 @@ def ct02():
     return ok, obtido, obs
 
 
-@caso("CT-08", "Menu Luna; chip 7 dias (padrao)",
+@caso("CT-08", "Menu Luna; chip 90 dias",
       "4 cartoes; urgencia Alta primeiro; 'Total de triagens: 4'", "clinica")
 def ct08():
     sessao_gestor()
     navegar("luna")
+    # 90 dias: as triagens do seed guardam a data de criacao do ambiente (o seed nao as recria);
+    # com o padrao da tela (7 dias) o caso expirava 7 dias depois do seed.
+    clicar_tid("chip-periodo-90")
     css('[data-testid="total-triagens"]')
     # a fila carrega depois do relatorio (skeleton primeiro): espera ao menos 1 cartao ou o estado vazio
     try:

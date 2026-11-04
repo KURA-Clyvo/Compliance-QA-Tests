@@ -20,7 +20,7 @@ automatizados. Pré-requisito: apps locais no ar - clínica `http://localhost:19
 |---|---|---|
 | CT-01 Login gestor | login `demo@kura.local` | `greeting-block` presente; caminho da URL = `/dashboard` |
 | CT-02 Login senha errada | senha `SenhaErrada123` | texto "E-mail ou senha incorretos" presente; "Sem conex..." ausente; `nav-drawer` ausente |
-| CT-08 Fila da Luna | login, menu Luna | `fila-luna-lista` presente; `total-triagens` = "Total de triagens: 4" (massa do seed) |
+| CT-08 Fila da Luna | login, menu Luna, chip **90 dias** | `fila-luna-lista` presente; `total-triagens` = "Total de triagens: 4" (massa do seed). O chip 90 dias evita que o caso expire: as triagens do seed guardam a data em que o ambiente foi criado |
 | CT-11 Loja do tutor | login tutor, aba Loja | `loja-aviso` igual ao aviso literal de pré-lançamento; `loja-grade` presente |
 | CT-07 Veterinário sem financeiro | gestor cria vet `vet.ide+<Date.now()>@kura.local` (senha `VetIde12345`), sai, entra como vet | `btn-ver-painel-financeiro` e `btn-painel-financeiro` ausentes; `/financeiro` redireciona para `/dashboard`; "Painel de gestão" ausente |
 

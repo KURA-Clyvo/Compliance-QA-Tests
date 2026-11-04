@@ -290,6 +290,22 @@
           "value": ""
         },
         {
+          "id": "837d1514-9c8d-461a-be39-7112d4723586",
+          "comment": "Chip 90 dias: as triagens do seed guardam a data de criacao do ambiente; com o padrao (7 dias) o caso expira 7 dias depois do seed.",
+          "command": "waitForElementPresent",
+          "target": "css=[data-testid=\"chip-periodo-90\"]",
+          "targets": [],
+          "value": "30000"
+        },
+        {
+          "id": "90549767-2283-4955-8002-40bc4a2299a3",
+          "comment": "",
+          "command": "executeScript",
+          "target": "document.querySelector('[data-testid=\"chip-periodo-90\"]').click()",
+          "targets": [],
+          "value": ""
+        },
+        {
           "id": "48a7c037-1ae3-47e2-a04a-436cec172bed",
           "comment": "",
           "command": "waitForElementPresent",
