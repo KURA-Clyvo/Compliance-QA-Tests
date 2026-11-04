@@ -20,7 +20,7 @@ de triagem Luna.
 |---|---|---|
 | **A — Teste manual (80%)** | Plano e relatório de testes de sistema: 13 casos, cada um com objetivo, dados de entrada, procedimento e saída esperada; dados controlados; resultados de 2 execuções e análise | [`manual/2TDSPF_2026_PlanoTestes_KURA.pdf`](manual/2TDSPF_2026_PlanoTestes_KURA.pdf) |
 | **B — Automação (20%)** | Projeto **Selenium IDE** com 5 casos automatizados (CT-01, CT-02, CT-07, CT-08, CT-11) | [`automacao/KURA-QA.side`](automacao/KURA-QA.side) · [como rodar](automacao/README-selenium-ide.md) |
-| Vídeo | Configuração, execução e resultado da automação no Selenium IDE | **(link do vídeo)** |
+| Vídeo | Configuração, execução e resultado da automação no Selenium IDE |  [`Link do Vídeo`](https://canva.link/e07frm5zrfdkryc) |
 
 > O plano de testes manuais foi entregue em **PDF**, no lugar do Azure Boards, por acordo da equipe
 > com o professor.
